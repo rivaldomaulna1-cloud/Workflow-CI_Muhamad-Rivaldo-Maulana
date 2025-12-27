@@ -1,4 +1,3 @@
-
 name: Retrain ML Model
 
 on: [push]
@@ -8,20 +7,20 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
-      - uses: actions/checkout@v3
+    - uses: actions/checkout@v3
 
-      - name: Set up Python
-        uses: actions/setup-python@v4
-        with:
-          python-version: "3.10"
+    - name: Set up Miniconda
+      uses: conda-incubator/setup-miniconda@v2
+      with:
+        auto-activate-base: true
+        python-version: 3.10
 
-      - name: Install dependencies
-        run: |
-          pip install -r MLProject/requirements.txt
-          pip install mlflow
+    - name: Install mlflow
+      run: |
+        pip install mlflow
 
-      - name: Run modelling
-        run: mlflow run MLProject -e modelling --no-conda
+    - name: Run modelling
+      run: mlflow run MLProject -e modelling
 
-      - name: Run tuning
-        run: mlflow run MLProject -e tuning --no-conda
+    - name: Run tuning
+      run: mlflow run MLProject -e tuning
