@@ -1,27 +1,27 @@
-name: MLflow CI Retraining
 
-on:
-  push:
-    branches: [ "main" ]
-  workflow_dispatch:
+name: Retrain ML Model
+
+on: [push]
 
 jobs:
-  train:
+  retrain:
     runs-on: ubuntu-latest
 
     steps:
-    - name: Checkout repository
-      uses: actions/checkout@v4
+      - uses: actions/checkout@v3
 
-    - name: Set up Python
-      uses: actions/setup-python@v5
-      with:
-        python-version: "3.10"
+      - name: Set up Python
+        uses: actions/setup-python@v4
+        with:
+          python-version: "3.10"
 
-    - name: Install MLflow
-      run: |
-        pip install mlflow pandas scikit-learn
+      - name: Install dependencies
+        run: |
+          pip install -r MLProject/requirements.txt
+          pip install mlflow
 
-    - name: Run MLflow Project
-      run: |
-        mlflow run MLProject
+      - name: Run modelling
+        run: mlflow run MLProject -e modelling --no-conda
+
+      - name: Run tuning
+        run: mlflow run MLProject -e tuning --no-conda
