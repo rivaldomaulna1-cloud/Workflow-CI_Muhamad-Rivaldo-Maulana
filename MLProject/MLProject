@@ -1,10 +1,30 @@
-name: retrain-ml-pipeline
-
-python_env: python_env.yaml
-
-entry_points:
-  modelling:
-    command: "python modelling.py"
-
-  tuning:
-    command: "python model_tuning.py"
+artifact_path: file:///C:/Users/ASUS/Documents/SMSML_Muhamad Rivaldo Maulana/Membangun
+  Model/mlruns/398690582229229660/models/m-d4f1e864a5e1477693762e4fcd20cda0/artifacts
+flavors:
+  python_function:
+    env:
+      conda: conda.yaml
+      virtualenv: python_env.yaml
+    loader_module: mlflow.sklearn
+    model_path: model.pkl
+    predict_fn: predict
+    python_version: 3.12.6
+  sklearn:
+    code: null
+    pickled_model: model.pkl
+    serialization_format: cloudpickle
+    sklearn_version: 1.8.0
+is_signature_from_type_hint: false
+mlflow_version: 3.8.1
+model_id: m-d4f1e864a5e1477693762e4fcd20cda0
+model_size_bytes: 292657
+model_uuid: m-d4f1e864a5e1477693762e4fcd20cda0
+prompts: null
+run_id: 1ae45cc4c7854110870156808841707f
+signature:
+  inputs: '[{"type": "double", "name": "Age", "required": true}, {"type": "double",
+    "name": "EstimatedSalary", "required": true}]'
+  outputs: '[{"type": "tensor", "tensor-spec": {"dtype": "int64", "shape": [-1]}}]'
+  params: null
+type_hint_from_example: false
+utc_time_created: '2025-12-27 07:41:17.514485'
