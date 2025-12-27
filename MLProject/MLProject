@@ -1,5 +1,10 @@
-name: retrain-model
-conda_env: conda.yaml
+name: retrain-ml-pipeline
+
+python_env: python_env.yaml
+
 entry_points:
-  main:
+  modelling:
     command: "python modelling.py"
+
+  tuning:
+    command: "python model_tuning.py"
