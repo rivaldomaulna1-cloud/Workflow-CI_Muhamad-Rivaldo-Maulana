@@ -12,17 +12,12 @@ jobs:
       - name: Setup Conda
         uses: conda-incubator/setup-miniconda@v3
         with:
-          # Menggunakan file conda.yaml yang kamu tunjukkan
-          environment-file: conda.yaml 
+          environment-file: MLProject/conda.yaml 
           activate-environment: mlflow-env
           auto-activate-base: false
 
       - name: Run modelling
-        # PENTING: Harus pakai shell bash -l {0} agar conda aktif
         shell: bash -l {0}
         run: |
-          conda info
-          conda list
-          # Jalankan mlflow dengan env-manager local karena conda sudah disiapkan di atas
+          cd MLProject
           mlflow run . --env-manager=local
-
