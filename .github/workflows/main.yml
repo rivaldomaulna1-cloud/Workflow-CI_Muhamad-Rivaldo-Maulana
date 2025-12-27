@@ -20,7 +20,6 @@ jobs:
       - name: Run modelling
         shell: bash -l {0}
         run: |
-          # Masuk ke folder project
           cd MLProject
-          # PERBAIKAN 2: Tambahkan '-e modelling' agar sesuai dengan isi file MLProject
-          mlflow run . -e modelling.py --env-manager=local
+          # Tambahkan flag --experiment-name di sini
+          mlflow run . -e modelling --experiment-name "Basic_Modelling" --env-manager=local
