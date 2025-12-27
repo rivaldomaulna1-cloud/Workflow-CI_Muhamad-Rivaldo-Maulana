@@ -7,20 +7,18 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
-    - uses: actions/checkout@v3
+      - uses: actions/checkout@v3
 
-    - name: Set up Miniconda
-      uses: conda-incubator/setup-miniconda@v2
-      with:
-        auto-activate-base: true
-        python-version: 3.10
+      - name: Set up Miniconda
+        uses: conda-incubator/setup-miniconda@v2
+        with:
+          auto-activate-base: false
 
-    - name: Install mlflow
-      run: pip install mlflow
+      - name: Install mlflow
+        run: pip install mlflow
 
-    - name: Run modelling
-      run: mlflow run MLProject -e modelling
+      - name: Run modelling
+        run: mlflow run MLProject -e modelling
 
-    - name: Run tuning
-      run: mlflow run MLProject -e tuning
-
+      - name: Run tuning
+        run: mlflow run MLProject -e tuning
