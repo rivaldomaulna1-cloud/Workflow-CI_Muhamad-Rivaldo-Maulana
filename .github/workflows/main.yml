@@ -19,6 +19,3 @@ jobs:
 
       - name: Run modelling
         run: mlflow run MLProject -e modelling
-
-      - name: Run tuning
-        run: mlflow run MLProject -e tuning
