@@ -6,5 +6,3 @@ entry_points:
   modelling:
     command: "python modelling.py"
 
-  tuning:
-    command: "python model_tuning.py"
