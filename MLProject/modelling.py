@@ -20,6 +20,8 @@ X_train, X_test, y_train, y_test = train_test_split(
 mlflow.set_experiment("Basic_Modelling")
 mlflow.sklearn.autolog()
 
+# Hapus atau komen baris ini di modelling.py:
+# mlflow.set_experiment("Basic_Modelling") 
 with mlflow.start_run():
     model = LogisticRegression(max_iter=1000)
     model.fit(X_train, y_train)
@@ -28,3 +30,4 @@ with mlflow.start_run():
     acc = accuracy_score(y_test, y_pred)
 
     print("Accuracy:", acc)
+
