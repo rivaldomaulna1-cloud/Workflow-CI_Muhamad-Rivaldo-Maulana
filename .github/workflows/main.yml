@@ -1,22 +1,28 @@
-name: Retrain ML Model
+name: MLflow Training Workflow
 
 on: [push]
 
 jobs:
-  retrain:
+  train:
     runs-on: ubuntu-latest
-
     steps:
-      - uses: actions/checkout@v3
+      - name: Checkout code
+        uses: actions/checkout@v3
 
-      - name: Set up Python
-        uses: actions/setup-python@v4
+      - name: Setup Conda
+        uses: conda-incubator/setup-miniconda@v3
         with:
-          python-version: "3.10"
-
-      - name: Install MLflow
-        run: pip install mlflow
+          # Menggunakan file conda.yaml yang kamu tunjukkan
+          environment-file: conda.yaml 
+          activate-environment: mlflow-env
+          auto-activate-base: false
 
       - name: Run modelling
-        run: mlflow run MLProject -e modelling
+        # PENTING: Harus pakai shell bash -l {0} agar conda aktif
+        shell: bash -l {0}
+        run: |
+          conda info
+          conda list
+          # Jalankan mlflow dengan env-manager local karena conda sudah disiapkan di atas
+          mlflow run . --env-manager=local
 
