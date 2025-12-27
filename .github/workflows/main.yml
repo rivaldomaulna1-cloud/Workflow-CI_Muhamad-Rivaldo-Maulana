@@ -9,9 +9,10 @@ jobs:
       - name: Checkout code
         uses: actions/checkout@v3
 
-      - name: Setup Conda
+          - name: Setup Conda
         uses: conda-incubator/setup-miniconda@v3
         with:
+          # PERBAIKAN 1: Tambahkan nama folder MLProject/
           environment-file: MLProject/conda.yaml 
           activate-environment: mlflow-env
           auto-activate-base: false
@@ -19,5 +20,7 @@ jobs:
       - name: Run modelling
         shell: bash -l {0}
         run: |
+          # Masuk ke folder project
           cd MLProject
-          mlflow run . --env-manager=local
+          # PERBAIKAN 2: Tambahkan '-e modelling' agar sesuai dengan isi file MLProject
+          mlflow run . -e modelling.py --env-manager=local
